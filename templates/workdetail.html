@@ -1,0 +1,285 @@
+{% load static %}
+<DOCTYPE !html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'css/workdetail.css' %}">
+
+        <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+        <script src="{% static 'js/template.js' %}"></script>
+{#        <script src="{% static 'js/workdetail.js' %}"></script>#}
+        <title>MES</title>
+    </head>
+
+    <body>
+        <div class="bag"></div>
+        <img src="" alt="">
+            <ul class="top_btn">
+                <li id="changeTime" onclick="changeTime(this)">暂停</li>
+                <li>故障</li>
+                <li onclick="off_work()">下班</li>
+            </ul>
+            <ul class="today">
+                <li>今日产量：<a id="today_total_qty"></a></li>
+                <li>效率：<a id="effectiveness"></a></li>
+        {#      <li>工作时长：<a id="timer"></a></li>#}
+                <li>数量：<a id="num"></a></li>
+            </ul>
+        <div class="herder">
+            百先得智能工位
+        </div>
+        <div class="content">
+             <h5>基本信息</h5>
+            <div class="basic_massage">
+                <ul>
+                    <li>姓名：<a>{{ name }}</a></li>
+                    <li>卡号：<a id="card_id">{{ card_id }}</a></li>
+                    <li>工序：<a>{{ department }}</a></li>
+                    <li>工位号：<a>{{ station }}</a></li>
+                    <li>技能等级：<a>{{ skill }}</a></li>
+                </ul>
+                <ul>
+                    <li>MO：<a id="mo"></a></li>
+                    <li>SO：<a id="so"></a></li>
+                    <li>二维码：<a id="code"></a></li>
+                    <li>流水号：<a id="serial_number"></a></li>
+                </ul>
+                <ul id="kablist"></ul>
+                <ul id="size_list_dic"></ul>
+                 <ul class="process">
+                    <li>工序名：<a id="work_stage">{{work_stage}}</a></li>
+                    <li>指导说明：<p id="stage_remarks"></p>
+                    </li>
+                    <li><img src="" alt=""></li>
+                </ul>
+            </div>
+<script id="kablist_model" type="text/html">
+{#    kuanshi#}
+    <%if(kablist!=null){%>
+
+       <%for(var list of kablist){%>
+{#          <a>11111111111111</a>#}
+{#          <a><%=list.BOM值%></a>#}
+{#       <%for(var k in list){%>#}
+            <li>
+            <%=list%>款式项&nbsp:&nbsp<%=kablist[0].款式项%>
+            </li>
+            <li>
+            <%=list%>款式值&nbsp:&nbsp<%=kablist[0].款式值%>
+            </li>
+            <li>
+            <%=list%>工艺项&nbsp:&nbsp<%=kablist[0].工艺项%>
+            </li>
+            <li>
+            <%=list%>工艺值&nbsp:&nbsp<%=kablist[0].工艺值%>
+            </li>
+            <li>
+            <%=list%>BOM项&nbsp:&nbsp<%=kablist[0].BOM项%>
+            </li>
+            <li>
+            <%=list%>BOM值&nbsp:&nbsp<%=kablist[0].BOM值%>
+            </li>
+{#           <%}%>#}
+        <%}%>
+    <%}%>
+{#    gongyi#}
+{#    <%if(size_list_dic!=null){%>#}
+{##}
+{#       <%for(var size_list of size_list_dic){%>#}
+{#          <%for(var k in size_list){%>#}
+{#       <a>#}
+{#        <%=k%>:<%=size_list[k]%>#}
+{#        </a>#}
+{#           <%}%>#}
+{#        <%}%>#}
+{#    <%}%>#}
+
+</script>
+ <script id="size_list_dic_model" type="text/html">
+{#    kuanshi#}
+    <%if(size_list_dic!=null){%>
+
+       <%for(var list of size_list_dic){%>
+{#          <a>11111111111111</a>#}
+{#          <a><%=list.BOM值%></a>#}
+          <%for(var k in list){%>
+               <li>
+                <%=k%> &nbsp: &nbsp<%=list[k]%>
+                </li>
+           <%}%>
+        <%}%>
+    <%}%>
+{#    gongyi#}
+{#    <%if(size_list_dic!=null){%>#}
+{##}
+{#       <%for(var size_list of size_list_dic){%>#}
+{#          <%for(var k in size_list){%>#}
+{#       <a>#}
+{#        <%=k%>:<%=size_list[k]%>#}
+{#        </a>#}
+{#           <%}%>#}
+{#        <%}%>#}
+{#    <%}%>#}
+
+</script>
+            <div class="processGuidance">
+                <H5>工艺指导</H5>
+                <div class="process_img"> <img id="stage_image" src="" alt=""></div>
+                <ul class="quality ">
+                    <li>质量（标准）</li>
+                    <li>质量标准说明：<p id="quality_remarks"></p>
+                    </li>
+                    <li>
+                        <span class="left_img">
+                            <img id="quality_image" src="" alt="">
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <script>
+        window.onload = function(e){
+        var department = $('#work_stage').html()
+        var code = "";
+        var lastTime,nextTime;
+        var lastCode,nextCode;
+        var card_id = $('#card_id').html()
+            /*socket*/
+        if (window.s) {
+                window.s.close()
+            }
+            /*创建socket连接*/
+            var socket = new WebSocket("ws://192.168.1.32:8000/echo/");
+            socket.onopen = function () {
+                console.log('WebSocket open');//成功连接上Websocket
+            };
+            socket.onmessage = function (e) {
+                alert('全体通告: ' + e.data);//打印出服务端返回过来的数据
+                $('#messagecontainer').prepend('<p>' + e.data + '</p>');
+            };
+            // Call onopen directly if socket is already open
+            if (socket.readyState == WebSocket.OPEN) socket.onopen();
+            window.s = socket;
+
+        document.onkeypress = function(e) {
+            nextCode = e.which;
+            nextTime = new Date().getTime();
+
+            if(lastCode != null && lastTime != null && nextTime - lastTime <= 30) {
+                code += String.fromCharCode(lastCode);
+            } else if(lastCode != null && lastTime != null && nextTime - lastTime > 100){
+                code = "";
+            }
+
+            lastCode = nextCode;
+            lastTime = nextTime;
+        }
+
+        this.Template_rendering=function(){
+                this.onkeypress = function(e){
+{#                console.log("e",e);#}
+                if(e.which == 13){
+                    console.log(code);
+                    $('#code').text(code)
+                    $.ajax({
+                            type: "POST",
+                            url: "http://192.168.1.32:8000/workmessage/",
+                            data: {code:code, card_id:card_id.toString(),department:department,type:"workdetail"},
+                            dataType: "json",
+                            success: function(data){
+                                var res = JSON.parse(data.data)
+                                $('#mo').text(res['Mo'])
+                                $('#stage_remarks').text(res['stage_remarks'])
+                                $('#quality_remarks').text(res['quality_remarks'])
+                                $('#effectiveness').text(res['effectiveness'])
+                                $('#so').text(res['So'])
+                                $('#today_total_qty').text(res['today_total_qty'])
+                                $('#num').text(res['num'])
+                                $('#serial_number').text(res['serial_number'])
+                                var src_quality_image = 'data:image/jpeg;base64,'+res['quality_image']
+                                var src_stage_image = 'data:image/jpeg;base64,'+res['stage_image']
+                                $('#quality_image').attr("src",src_quality_image)
+                                $('#stage_image').attr("src",src_stage_image)
+                                console.log(res['size_list_dic'])
+                                res['size_list_dic'] =  JSON.parse(res['size_list_dic'].replace(/'/g,'"'))
+{#                                console.log(res['kablist'][0]['款式值'])#}
+                                var kablist_html = template.render('kablist_model',res);
+                                var size_list_dic_html=template.render('size_list_dic_model',res);
+                                $("#kablist").html(kablist_html);
+                                $("#size_list_dic").html(size_list_dic_html);
+                            }
+                        });
+                    code = "";
+                }
+            }
+        }
+        Template_rendering();
+
+    }
+
+
+
+    function off_work() {
+        var event = new MessageEvent('call', { 'view': window, 'bubbles': false, 'cancelable': false, 'data': '~!!!!!!!!!!!!!!!!' });
+            document.dispatchEvent (event);
+        var card_id = $('#card_id').html()
+        $.ajax({
+                type: "POST",
+                url: "http://192.168.1.32:8000/offwork/",
+                data: {card_id: card_id.toString()},
+                dataType: "json",
+                success: function (data) {
+{#                    $('#changeTime').text("恢复")#}
+                    console.log("下班")
+                }
+            })
+
+    }
+{#暂停与恢复#}
+console.log("this",this);
+var that=this;
+    function changeTime(obj) {
+        var card_id = $('#card_id').html()
+        var status = obj.innerHTML
+        console.log(obj.innerHTML)
+        if (status == '暂停') {
+            console.log("~~~~~~")
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.1.32:8000/stopTime/",
+                data: {card_id: card_id.toString()},
+                dataType: "json",
+                success: function (data) {
+                    $('#changeTime').text("恢复")
+                    var bag=document.getElementsByClassName("bag");
+                    console.log("bag",bag);
+                    bag[0].style.display="block";
+                    console.log("that",that);
+                    that.onkeypress=false;
+                    console.log("this",that);
+                }
+            })
+        }
+        else {
+            console.log("~~~~~~")
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.1.32:8000/recoverTime/",
+                data: {card_id: card_id.toString()},
+                dataType: "json",
+                success: function (data) {
+                    $('#changeTime').text("暂停");
+                    var bag=document.getElementsByClassName("bag");
+                    console.log("bag",bag);
+                    bag[0].style.display="none";
+                    that.Template_rendering();
+                }
+            })
+        }
+    }
+
+    </script>
+    </html>

@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+}
+html{
+    font-size: 312.5%
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/body_bag.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
+}
+.person_msg{
+    width: 90%;
+    height: 90%;
+    margin: 1rem auto;
+    background: -moz-linear-gradient(left, #122e5e, #104c8a, #122e5e);
+    background: -webkit-gradient(linear, left, from(#122e5e), to(#104c8a), to(#122e5e));
+    background: -webkit-linear-gradient(left, #122e5e, #104c8a, #122e5e);
+    background: -o-linear-gradient(left, #122e5e, #104c8a, #122e5e);
+    opacity: 0.6;
+    border-radius: 0.2rem;
+    overflow: hidden;
+}
+
+.person_msg .main{
+    width: 90%;
+    margin:0 auto;
+    margin-top: 1rem
+}
+.person_msg .main li{
+    color: white;
+    font-size: 0.6rem;
+    margin-bottom: 1rem
+}
