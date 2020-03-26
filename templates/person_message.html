@@ -1,0 +1,106 @@
+{% load static %}
+<DOCTYPE !html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'css/person_message.css' %}">
+        <link rel="stylesheet" href="{% static 'css/video-js.min.css' %}">
+{#        layui#}
+        <link rel="stylesheet" href="{% static 'css/layui.css' %}">
+        <script src="{% static 'js/layui.js' %}"></script>
+        <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+        <script src="{% static 'js/video.min.js' %}"></script>
+         <script src="{% static 'js/zoom_view.js' %}"></script>
+        <title>MES</title>
+    </head>
+
+    <body>
+    <div class="content">
+            <div class="top_title">
+                <h5 class="title">个人中心</h5>
+                <h5 class="back" onclick="go_back()">返回</h5>
+            </div>
+            <div class="content_main_left">
+                <table class="layui-table" lay-size="sm">
+                  <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>姓名</th>
+                      <th>{{name}}</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tbody">
+                    <tr>
+                        <td>卡号</td>
+                        <td id="card_id">{{ card_id }}</td>
+                    </tr>
+                    <tr>
+                        <td>工位号</td>
+                        <td>{{ station }}</td>
+                    </tr>
+                    <tr>
+                        <td>技能等级</td>
+                        <td>{{ skill }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+    {% for video in videolist %}
+    <a video_name="{{ video.video_name }}" onclick="video_play(this)">{{ video.video_name }}<a/>
+    {% endfor %}
+            <div class="content_main_right">
+                <div class="main">
+			<!-- MAIN CONTENT -->
+            {% for video in videolist %}
+                <div id="{{ video.video_name }}" class="main-content video-file" style="display: none">
+                    <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-9">
+                            <div class="panel">
+
+                                <center>
+                                    <a>{{ video.video_name }}</a>
+                                <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="1024" height="768"
+                                      poster="http://video-js.zencoder.com/oceans-clip.png"
+                                      data-setup="{}">
+                                    <source id="video_playing" src="/uploads/{{ video.file }}" type='video/mp4' />
+
+                                    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+
+                                </video>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+        </a>
+    </body>
+    <script>
+        var filelist = document.getElementsByClassName("video-file")
+        function video_play(obj) {
+            var video_name = $(obj).attr("video_name")
+            for(var k = 0; k < filelist.length; k++) {
+					filelist[k].style.display = "none";
+				}
+            document.getElementById(video_name).style.display = "block"
+        }
+
+
+        function go_back() {
+            window.history.go(-1)
+        }
+    </script>
+    </html>

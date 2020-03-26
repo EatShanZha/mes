@@ -1,0 +1,103 @@
+{% load static %}
+<DOCTYPE !html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'css/popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/comment.css' %}">
+        <link rel="stylesheet" href="{% static 'css/zoomify.css' %}">
+        {#        layui#}
+        <link rel="stylesheet" href="{% static 'css/layui.css' %}">
+        <script src="{% static 'js/layui.js' %}"></script>
+        <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+        <script src="{% static 'js/template.js' %}"></script>
+        <script src="{% static 'js/zoomify.js' %}"></script>
+        <script src="{% static 'js/common_mes.js' %}"></script>
+        <script src="{% static 'js/zoom_view.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+{#        <script src="{% static 'js/dianji.js' %}"></script>#}
+        {% block style %}
+        {% endblock %}
+    </head>
+
+    <body>
+    {#暂停恢复弹窗#}
+    <div class="bag">
+        <div class="bag_popup">
+            <div class="title">
+                <span class="title_txt">暂停/恢复</span>
+            </div>
+            <ul class="bag_popup_main">
+                <li><a href="###">暂停中</a></li>
+                <li><a href="###">待恢复</a></li>
+            </ul>
+        </div>
+    </div>
+    {#历史记录弹窗#}
+    <div id="history_bag">
+        <div id="history_bag_popup">
+            <div id="history_bag_popup_title">
+                <span id="title_delete">x</span>
+            </div>
+            <div id="history_bag_popup_middle">
+            </div>
+            <div id="history_bag_popup_bottom">
+                <div id="fenye">
+                    <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-2">
+{#                        <a onclick="list.dianji()">2</a>#}
+{#                        <a href="javascript:;" class="layui-laypage-prev" data-page="0">上一页</a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#故障弹窗#}
+    <div class="fault_bag">
+        <div class="fault_bag_popup">
+            <div class="title">
+                <span class="title_txt">故障</span>
+                <span class="fault_title_delete">x</span>
+            </div>
+            <div class="fault_bag_popup_main">
+                <form action="" method="get" id="lab_box">
+                    <label for=""><input type="radio" name="sex" value="0">缺货</label>
+                    <label for=""><input type="radio" name="sex" value="0">缺料</label>
+                    <label for=""><input type="radio" name="sex" value="0">缺人</label>
+                </form>
+                <button class="confirm">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="prompt">请扫描</div>
+
+    <div class="herder">
+        <div class="herder_title">百先得智能工位</div>
+        <div class="top_btn">
+            <button type="button" class="layui-btn layui-btn-warm" onclick="list.changeTime(this)">暂停</button>
+            <button type="button" class="layui-btn layui-btn-danger" onclick="list.fault_view()">故障</button>
+            <button type="button" class="layui-btn layui-btn-normal" onclick="list.off_work()">下班</button>
+            <button type="button" class="layui-btn" onclick="list.history()">历史</button>
+        </div>
+        <div class="person" onclick="list.person_message()"><img class="person_png" src="{% static 'img/tx.jpg' %}"
+                                                                 alt=""></div>
+        <ul class="today">
+            <li>今日产量：<a id="today_total_qty"></a></li>
+            <li>效率：<a id="effectiveness"></a></li>
+            <li>卡号：<a id="card_id">{{ card_id }}</a></li>
+            <li>工位：<a id="card_id">{{ station }}</a></li>
+            <li>姓名：<a id="username">{{ name }}</a></li>
+        </ul>
+    </div>
+
+    {% block conter %}
+    {% endblock %}
+
+    </body>
+
+    {% block script %}
+    {% endblock %}
+
+    </html>

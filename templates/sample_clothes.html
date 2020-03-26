@@ -1,0 +1,399 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/sample_clothes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/zoom.css' %}">
+    <script src="{% static 'js/sample_clothes.js' %}"></script>
+    <script src="{% static 'js/zoom.js' %}"></script>
+{% endblock %}
+
+{% block conter %}
+    <div class="content">
+        <div class="content_main_left">
+            <table class="layui-table" lay-size="sm">
+                <colgroup>
+                    <col width="200">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                </thead>
+                <tbody class="tbody">
+                <tr>
+                    <td>订单</td>
+                    <td id="so"></td>
+                </tr>
+                <tr>
+                    <td>客户款号</td>
+                    <td id="customer_num"></td>
+                </tr>
+                <tr class="process" hidden>
+                    <td>工序</td>
+                    <td id="work_stage">{{ work_stage }}</td>
+                </tr>
+                <tr>
+                    <td>客户</td>
+                    <td id="customer"></td>
+                </tr>
+                <tr>
+                    <td>样板编号</td>
+                    <td id="template_num"></td>
+                </tr>
+                <tr>
+                    <td>面料</td>
+                    <td id="fabric"></td>
+                </tr>
+                <tr>
+                    <td>袖里布</td>
+                    <td id="sleeve_lining"></td>
+                </tr>
+                <tr>
+                    <td>内部工艺</td>
+                    <td id="process"></td>
+                </tr>
+                <tr>
+                    <td>订单类型</td>
+                    <td id="type"></td>
+                </tr>
+                <tr>
+                    <td>里布</td>
+                    <td id="lining"></td>
+                </tr>
+                <tr>
+                    <td>上衣袋布</td>
+                    <td id="sy_cloth"></td>
+                </tr>
+                <tr>
+                    <td>包边条</td>
+                    <td id="bbt"></td>
+                </tr>
+                <tr>
+                    <td>织边条</td>
+                    <td id="zbt"></td>
+                </tr>
+                <tr>
+                    <td>数量</td>
+                    <td id="number"></td>
+                </tr>
+                <tr>
+                    <td>明袋里</td>
+                    <td id="mdl"></td>
+                </tr>
+                <tr>
+                    <td>袋盖里</td>
+                    <td id="dgl"></td>
+                </tr>
+
+                </tbody>
+                <tbody class="kablist_tamplate">
+
+                </tbody>
+                <tbody class="layui-table size_list_dic_tamplate" lay-size="sm">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="content_main_left_trousers">
+            <table class="layui-table" lay-size="sm">
+                <colgroup>
+                    <col width="200">
+                    <col width="0">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>卡号</th>
+                    <th id="card_id">{{ card_id }}</th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+                <tr>
+                    <td>订单</td>
+                    <td id="so_trousers"></td>
+                </tr>
+
+                <tr class="process">
+                    <td>工序名</td>
+                    <td id="work_stage">{{ work_stage }}</td>
+                </tr>
+                <tr>
+                    <td>客户</td>
+                    <td id="kh"></td>
+                </tr>
+                <tr>
+                    <td>样板编号</td>
+                    <td id="ybbh"></td>
+                </tr>
+                <tr>
+                    <td>面料</td>
+                    <td id="ml"></td>
+                </tr>
+                <tr>
+                    <td>内部工艺</td>
+                    <td id="nbgy"></td>
+                </tr>
+                <tr>
+                    <td>订单类型</td>
+                    <td id="dddx"></td>
+                </tr>
+                <tr>
+                    <td>裤里</td>
+                    <td id="kl"></td>
+                </tr>
+                <tr>
+                    <td>纽扣</td>
+                    <td id="nk"></td>
+                </tr>
+                <tr>
+                    <td>数量</td>
+                    <td id="sl"></td>
+                </tr>
+                </tbody>
+                <tbody class="kablist_tamplate">
+
+                </tbody>
+                <tbody class="layui-table size_list_dic_tamplate" lay-size="sm">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="processGuidance">
+            <ul class="process_img">
+                <li>
+                    <img id="stage_image" src="" alt="">
+                </li>
+            </ul>
+
+            <div class="right">
+                <ul class="materials_clothes">
+                    <li>
+                        <img id="zb" src=""></img>
+                        <span>主标</span>
+                    </li>
+                    <li>
+                        <img id="fb" src=""></img>
+                        <span>副标</span>
+                    </li>
+                    <li>
+                        <img id="mlb" src=""></img>
+                        <span>面料标</span>
+                    </li>
+                    <li>
+                        <img id="cmb" src=""></img>
+                        <span>尺码标</span>
+                    </li>
+                    <li>
+                        <img id="lb" src=""></img>
+                        <span>领标</span>
+                    </li>
+                    <li>
+                        <img src="" id="xb"></img>
+                        <span>袖标</span>
+                    </li>
+                    <li>
+                        <img src="" id="bzbt"></img>
+                        <span>包边条</span>
+                    </li>
+                    <li>
+                        <img src="" id="zbtt"></img>
+                        <span>织边条</span>
+                    </li>
+                </ul>
+                <ul class="materials_trousers">
+                    <li>
+                        <img id="zb" src=""></img>
+                        <span>主标</span>
+                    </li>
+                    <li>
+                        <img id="fb" src=""></img>
+                        <span>副标</span>
+                    </li>
+                    <li>
+                        <img id="mlb" src=""></img>
+                        <span>面料标</span>
+                    </li>
+                    <li>
+                        <img id="ml" src=""></img>
+                        <span>面料</span>
+                    </li>
+                    <li>
+                        <img id="lb" src=""></img>
+                        <span>里布</span>
+                    </li>
+                    <li>
+                        <img src="" id="zsb"></img>
+                        <span>支纱标</span>
+                    </li>
+                    <li>
+                        <img src="" id="bbt"></img>
+                        <span>防伪标</span>
+                    </li>
+                    <li>
+                        <img src="" id="bbtt"></img>
+                        <span>包边条</span>
+                    </li>
+                </ul>
+                <table class="layui-table" lay-size="sm" id="cm_detaile">
+                    <colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <tbody class="cm_detaile_main">
+
+                    </tbody>
+
+                </table>
+                <div class="bottom_code">
+                    <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_yb">
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md6">
+                                <div class="layui-card">
+                                    {#                            <div class="layui-card-header">样板描述</div>#}
+                                    <div class="layui-card-body">
+                                        <span>样板描述：</span>
+                                        <span class="ybms"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_txt">
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md6">
+                                <div class="layui-card">
+                                    {#                            <div class="layui-card-header">款式描述</div>#}
+                                    <div class="layui-card-body">
+                                        <span>款式描述：</span>
+                                        <span class="ksms"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_txt">
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md6">
+                                <div class="layui-card">
+                                    {#                            <div class="layui-card-header">款式描述</div>#}
+                                    <div class="layui-card-body">
+                                        <span>面料裁剪：</span>
+                                        <span id="mlcj"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_txt">
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md6">
+                                <div class="layui-card">
+                                    {#                            <div class="layui-card-header">款式描述</div>#}
+                                    <div class="layui-card-body">
+                                        <span>裁剪改版：</span>
+                                        <span id="cjgb"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_txt">
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md6">
+                                <div class="layui-card">
+                                    <div class="layui-card-body">
+                                        <span>客户要求：</span>
+                                        <span id="customer_req"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom_serial_number">
+                <ul id="nc" class="nc">
+                    <li><span>粘衬领面</span><span id="nclm"></span></li>
+                    <li><span>粘衬挂面</span><span id="ncgm"></span></li>
+                    <li><span>粘衬前片</span><span id="ncqp"></span></li>
+                    <li><span>粘衬领脚</span><span id="nclj"></span></li>
+                    <li><span>粘衬袖山</span><span id="ncxs"></span></li>
+                    <li><span>粘衬底边</span><span id="ncdb"></span></li>
+                    <li><span>粘衬肩部</span><span id="ncjb"></span></li>
+                </ul>
+                二维码：<span id="code"></span>
+                数量：<span id="num"></span>
+                <span class="state_clothes"></span>
+                <span class="state_trousers"></span>
+            </div>
+        </div>
+    </div>
+    <script id="kablist_model" type="text/html">
+        <%if(kablist!=null){% >
+        <%for(var list of kablist){% >
+        <tr>
+            <td><%=kablist[0].款式项%></td>
+            <td><%=kablist[0].款式值%></td>
+        </tr>
+        <tr>
+            <td><%=kablist[0].工艺项%></td>
+            <td><%=kablist[0].工艺值%></td>
+        </tr>
+        <tr>
+            <td> <%=kablist[0].BOM项%></td>
+            <td><%=kablist[0].BOM值%></td>
+        </tr>
+        <%}%>
+        <%}%>
+    </script>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var process
+        var station = "{{ station }}"
+        var name = "{{ name }}"
+        var machine_code = "{{ machine_code }}"
+        var card_id = "{{ card_id }}"
+        var skill = "{{ skill }}"
+        var userName = "{{ name }}"
+        var prompt = document.getElementsByClassName("prompt");
+        window.onload = function (e) {
+            {# 图片的缩放#}
+            list.zoomify();
+            process = $('#work_stage').html()
+            var code = "";
+            var lastTime, nextTime;
+            var lastCode, nextCode;
+            /*socket*/
+            list.echo_code();
+
+            document.onkeypress = function (e) {
+                nextCode = e.which;
+                nextTime = new Date().getTime();
+
+                if (lastCode != null && lastTime != null && nextTime - lastTime <= 30) {
+                    code += String.fromCharCode(lastCode);
+                } else if (lastCode != null && lastTime != null && nextTime - lastTime > 100) {
+                    code = "";
+                }
+                lastCode = nextCode;
+                lastTime = nextTime;
+            }
+
+            this.Template_rendering = function () {
+                this.onkeypress = function (e) {
+                    {#                console.log("e",e);#}
+                    if (e.which == 13) {
+                        readcode({code: code, card_id: card_id.toString(), process: process, station: station});
+                        code = "";
+                    }
+                }
+            }
+            Template_rendering();
+
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,262 @@
+/*暂停/恢复弹窗*/
+.bag {
+    width: 100%;
+    height: 100%;
+    background: red;
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    z-index: 1;
+}
+
+.bag_popup {
+    width: 450px;
+    height: 250px;
+    background-color: #FFB800;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -225px;
+    margin-top: -125px;
+    overflow: hidden;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+
+.bag_popup .title {
+    overflow: hidden;
+}
+
+.bag_popup .title span {
+    display: block;
+    color: white;
+    line-height: 50px;
+}
+
+.bag_popup .title span.title_txt {
+    float: left;
+    margin-left: 10px;
+}
+
+.bag_popup .title span.title_delete {
+    float: right;
+    margin-right: 10px;
+
+}
+
+.bag_popup .bag_popup_main {
+    width: 100%;
+    height: 100%;
+    /*overflow: scroll;*/
+    color: white
+}
+
+.bag_popup .bag_popup_main li {
+    width: 100%;
+    line-height: 30px;
+}
+
+.bag_popup .bag_popup_main li a {
+    color: white;
+    font-size: 25px;
+}
+
+/*历史记录弹窗*/
+#history_bag {
+    width: 100%;
+    height: 100%;
+    background: red;
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    z-index: 1;
+}
+
+#history_bag_popup {
+    width: 800px;
+    height: 500px;
+    background-color: #009688;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -400px;
+    margin-top: -250px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#history_bag_popup #history_bag_popup_title {
+    overflow: hidden;
+}
+
+#title_delete {
+    font-size: 30px;
+    float: right;
+    margin-right: 22px;
+    color: white;
+}
+
+#history_bag_popup_middle {
+    overflow: hidden;
+}
+
+#history_bag_popup_middle li span {
+    display: block;
+    float: left;
+    width: 190px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+}
+
+#history_bag_popup_middle li {
+    overflow: hidden;
+}
+
+#history_bag_popup_title {
+    height: 35px;
+}
+
+#history_bag_popup_bottom {
+    height: 35px;
+}
+
+#history_bag_popup_middle {
+    height: 420px;
+}
+
+#fenye {
+    text-align: -webkit-center;
+}
+/*#history_bag_popup #history_bag_popup_title span {*/
+/*display: block;*/
+/*color: white;*/
+/*line-height: 50px;*/
+/*}*/
+
+/*#history_bag_popup #history_bag_popup_title span#title_delete {*/
+/*float: right;*/
+/*margin-right: 30px;*/
+/*font-size: 30px;*/
+/*}*/
+
+/*#history_bag_popup #history_bag_popup_middle {*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*color: white;*/
+/*}*/
+
+/*#history_bag_popup #history_bag_popup_middle li {*/
+/*width: 100%;*/
+/*line-height: 30px;*/
+/*overflow: hidden;*/
+/*}*/
+
+#history_bag_popup_middle li.active {
+    background: red;
+}
+
+/*#history_bag_popup #history_bag_popup_middle li span {*/
+/*display: block;*/
+/*float: left;*/
+/*width: 190px;*/
+/*line-height: 30px;*/
+/*text-align: center;*/
+/*}*/
+
+/*#sliderWrap {*/
+/*height: 100%;*/
+/*width: 16px;*/
+/*background-color: #009688;*/
+/*position: absolute;*/
+/*right: 0;*/
+/*top: 0;*/
+/*}*/
+
+/*#slider {*/
+/*width: 10px;*/
+/*height: 50px;*/
+/*background-color: #009688;*/
+/*position: absolute;*/
+/*left: 3px;*/
+/*top: 0px;*/
+/*border-radius: 10px;*/
+/*}*/
+
+/*故障弹窗*/
+.fault_bag {
+    width: 100%;
+    height: 100%;
+    background: red;
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    z-index: 1;
+}
+
+.fault_bag_popup {
+    width: 300px;
+    height: 250px;
+    background-color: #FF5722;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -125px;
+    overflow: hidden;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+
+.fault_bag_popup .title {
+    overflow: hidden;
+}
+
+.fault_bag_popup .title span {
+    display: block;
+    color: white;
+    line-height: 50px;
+}
+
+.fault_bag_popup .title span.title_txt {
+    float: left;
+    margin-left: 10px;
+}
+
+.fault_bag_popup .title span.fault_title_delete {
+    float: right;
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.fault_bag_popup .fault_bag_popup_main {
+    width: 100%;
+    height: 100%;
+    /*overflow: scroll;*/
+    color: white
+}
+
+/*.fault_bag_popup .fault_bag_popup_main::-webkit-scrollbar{*/
+/*display: none;*/
+/*}*/
+.fault_bag_popup .fault_bag_popup_main #lab_box label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.confirm {
+    outline: none;
+    background-color: #f90;
+    border: solid 1px #f90;
+    color: white;
+    width: 70px;
+    height: 35px;
+    margin: 0 auto;
+    position: relative;
+    left: 50%;
+    margin-left: -35px;
+
+}

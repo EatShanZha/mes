@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/cdl_trousers.css' %}">
+    <script src="{% static 'js/cdl_trousers.js' %}"></script>
+{% endblock %}
+
+{% block conter %}
+    <div class="content">
+        <div class="content_main_left">
+            <table class="layui-table" lay-size="sm" width="100%">
+                <colgroup>
+                    <col width="150">
+                    <col width="0">
+                    <col>
+                </colgroup>
+                <tbody class="tbody">
+                <tr>
+                    <td>技能等级</td>
+                    <td>{{ skill }}</td>
+                </tr>
+                <tr>
+                    <td>订单</td>
+                    <td id="so"></td>
+                </tr>
+                <tr>
+                    <td>客户款号</td>
+                    <td id="customer_num"></td>
+                </tr>
+                <tr class="process">
+                    <td>工序名</td>
+                    <td id="work_stage">{{ work_stage }}</td>
+                </tr>
+                {#                    裁剪大货里布#}
+                <tr>
+                    <td>款式</td>
+                    <td id="ks"></td>
+                </tr>
+                <tr>
+                    <td>袖叉</td>
+                    <td id="xc"></td>
+                </tr>
+                <tr>
+                    <td>大身里布</td>
+                    <td id="dslbml"></td>
+                </tr>
+                <tr>
+                    <td>袖子里布</td>
+                    <td id="szlbml"></td>
+                </tr>
+                <tr>
+                    <td>里开线面料</td>
+                    <td id="lkxml"></td>
+                </tr>
+                <tr>
+                    <td>里袋贴</td>
+                    <td id="dtcl"></td>
+                </tr>
+                <tr>
+                    <td>香水袋料</td>
+                    <td id="xsdcl"></td>
+                </tr>
+                <tr>
+                    <td>挂里三角料</td>
+                    <td id="sjcl"></td>
+                </tr>
+                <tr>
+                    <td>版型</td>
+                    <td id="bx"></td>
+                </tr>
+                <tr>
+                    <td>挂面</td>
+                    <td id="gm"></td>
+                </tr>
+                <tr>
+                    <td>里布用法</td>
+                    <td id="lbyf"></td>
+                </tr>
+                <tr>
+                    <td>大身里布用量</td>
+                    <td id="dslbyl"></td>
+                </tr>
+                <tr>
+                    <td>袖子里布用量</td>
+                    <td id="xzlbyl"></td>
+                </tr>
+                <tr>
+                    <td>里开线用量</td>
+                    <td id="lkxyl"></td>
+                </tr>
+                <tr>
+                    <td>袋贴用量</td>
+                    <td id="dtyl"></td>
+                </tr>
+                <tr>
+                    <td>香水袋用量</td>
+                    <td id="xsdyl"></td>
+                </tr>
+                <tr>
+                    <td>三角用量</td>
+                    <td id="sjyl"></td>
+                </tr>
+                <tr>
+                    <td>卡袋开线料</td>
+                    <td id="kdkxl"></td>
+                </tr>
+                <tr>
+                    <td>订单数量合计</td>
+                    <td id="ddslhj"></td>
+                </tr>
+                </tbody>
+            </table>
+{#            <script id="kablist_model" type="text/html">#}
+{#                <%if(kablist!=null){% >#}
+{#                <%for(var list of kablist){% >#}
+{#                <tr>#}
+{##}
+{#                    <td><%=kablist[0].款式项%></td>#}
+{#                    <td><%=kablist[0].款式值%></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><%=kablist[0].工艺项%></td>#}
+{#                    <td><%=kablist[0].工艺值%></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{##}
+{#                    <td> <%=kablist[0].BOM项%></td>#}
+{#                    <td><%=kablist[0].BOM值%></td>#}
+{#                </tr>#}
+{#                <%}%>#}
+{#                <%}%>#}
+{#            </script>#}
+{#            <script id="size_list_dic_model" type="text/html">#}
+{#                <%if(size_list_dic!=null){% >#}
+{#                <tr>#}
+{#                    <td><%=size_list_dic[0]['版型']%></td>#}
+{#                    <td><%=size_list_dic[0]['备注']%></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><%=size_list_dic[1]['版型']%></td>#}
+{#                    <td><%=size_list_dic[1]['备注']%></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><%=size_list_dic[2]['版型']%></td>#}
+{#                    <td><%=size_list_dic[2]['备注']%></td>#}
+{#                </tr>#}
+{#                <%}%>#}
+{#            </script>#}
+        </div>
+        <div class="processGuidance">
+            <ul class="process_img">
+                <li>
+                    <img id="stage_image" src="" alt="">
+                </li>
+            </ul>
+            <div class="bottom_code">
+                <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_txt">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                {#                        <div class="layui-card-header">客户要求</div>#}
+                                <div class="layui-card-body">
+                                    <span>客户要求：</span>
+                                    <span id="customer_req"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_txt">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                {#                        <div class="layui-card-header">客户要求</div>#}
+                                <div class="layui-card-body">
+                                    <span>面料裁剪：</span>
+                                    <span id="mlcj"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 20px; background-color: #F2F2F2;" class="bottom_code_txt">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                {#                        <div class="layui-card-header">客户要求</div>#}
+                                <div class="layui-card-body">
+                                    <span>裁剪改版：</span>
+                                    <span id="cjgb"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="layui-table" lay-size="sm" id="cm_detaile">
+                    <colgroup>
+                        <col width="150">
+                        <col width="0">
+                        <col>
+                    </colgroup>
+                    <tbody class="cm_detaile_main">
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="code_number">
+            <span class="state"></span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var process
+        var station = "{{ station }}"
+        var name = "{{ name }}"
+        var machine_code = "{{ machine_code }}"
+        var card_id = "{{ card_id }}"
+        var skill = "{{ skill }}"
+        var userName = "{{ name }}"
+        var prompt = document.getElementsByClassName("prompt");
+        window.onload = function (e) {
+            {# 图片的缩放#}
+            list.zoomify();
+            {#        $('#stage_image').zoomify('zoomIn');#}
+            process = $('#work_stage').html()
+            var code = "";
+            var lastTime, nextTime;
+            var lastCode, nextCode;
+            /*socket*/
+            list.echo_code();
+
+            document.onkeypress = function (e) {
+                nextCode = e.which;
+                nextTime = new Date().getTime();
+
+                if (lastCode != null && lastTime != null && nextTime - lastTime <= 30) {
+                    code += String.fromCharCode(lastCode);
+                } else if (lastCode != null && lastTime != null && nextTime - lastTime > 100) {
+                    code = "";
+                }
+
+                lastCode = nextCode;
+                lastTime = nextTime;
+            }
+
+            this.Template_rendering = function () {
+                this.onkeypress = function (e) {
+                    {#                console.log("e",e);#}
+                    if (e.which == 13) {
+                        console.log(code);
+                        $('#code').text(code)
+                        readcode({code: code, card_id: card_id.toString(), process: process, station: station});
+                        code = "";
+                    }
+                }
+            }
+            Template_rendering();
+
+        }
+
+    </script>
+{% endblock %}

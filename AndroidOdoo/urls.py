@@ -16,8 +16,10 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from android import views
-
+from AndroidOdoo import settings
+from django.views import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('android.urls', namespace='android'))
+    url(r'^', include('android.urls', namespace='android')),
+    url(r'^uploads/(?P<path>.*)$',static.serve, {'document_root': settings.MEDIA_ROOT},),
 ]

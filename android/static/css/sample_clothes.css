@@ -1,0 +1,298 @@
+
+/*QRONZ*/
+@media screen and (max-width: 1280px) {
+      *{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+}
+html{
+	width: 100%;
+	height:100%;
+}
+body{
+	width: 100%;
+	height:100%;
+}
+.content{
+    width: 98%;
+    height:89.5%;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 6666;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-top: 0.1rem;
+}
+    .content .content_main_left{
+        float: left;
+        width: 20%;
+        display: none;
+    }
+    .layui-table[lay-size=sm] td, .layui-table[lay-size=sm] th {
+        font-size: 15px!important;
+        padding: 5px 10px;
+        border-left: 1px solid #e6e6e6;
+    }
+    .layui-table tr {
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        border-right: 1px solid #e6e6e6;
+    }
+    .content .content_main_left_trousers{
+        float: left;
+        width: 20%;
+        display: none;
+    }
+    .content #kablist{
+        text-align: center;
+        margin-top: 0.05rem;
+    }
+     .content #kablist tr td{
+       text-align: left!important;
+    }
+      .content #size_list_dic tr td{
+       text-align: left!important;
+    }
+    .content #size_list_dic{
+        text-align: center;
+        margin-top: 0.05rem;
+    }
+    .content .basic_massage tr td{
+        text-align: center;
+        width: 50%;
+        font-family:"Angsana New";
+        line-height:0.3rem!important;
+        font-size: 16px;
+    }
+    .top_btn {
+        overflow: hidden;
+        position: absolute;
+        left: 2.8rem;
+        top:0.5rem;
+    }
+    .top_btn li{
+        float: left;
+        font-size: 0.35rem;
+        width: 1.5rem;
+        height: 0.75rem;
+        line-height: 0.75rem;
+        border: solid 0.02rem;
+        margin-right: 0.6rem;
+        border-radius: 0.2rem;
+        text-align: center;
+    }
+    .process_img li{
+        width: 100%;
+        height: 100%;
+    }
+    .content .title{
+      font-size: 0.4rem;
+      font-weight: 400;
+      margin-left: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .top_btn {
+        overflow: hidden;
+        position: absolute;
+        left: 2.3rem;
+        top: 0.35rem;
+    }
+    #changeTime{
+      position: relative;
+      z-index: 1000000000000000000000000000;
+    }
+    .processGuidance{
+      width: 79%;
+      height:85%;
+      float: right;
+      display: none;
+      /*border: solid 1px red;*/
+    }
+    .processGuidance .process_img{
+      float: left;
+      width: 50%;
+    }
+     .processGuidance .process_img li{
+        /*width: 50%;*/
+        /*height: 8rem;*/
+        /*margin: 0 auto;*/
+    }
+      .processGuidance .process_img li img{
+        /*max-width: 100%;*/
+        height: 10rem;
+          margin: 0 auto;
+
+    }
+    .processGuidance .process_img li h5{
+        font-size: 16px;
+        color: #666;
+    }
+    .processGuidance .process_img li span img{
+       max-width: 100%;
+       max-height: 100%;
+    }
+    .processGuidance .quality{
+        float: right;
+        width: 48%;
+    }
+    .processGuidance .quality li{
+        width: 100%;
+        height: 100%;
+    }
+    .processGuidance .quality li h5{
+        font-size: 16px;
+        color: #666;
+    }
+    .processGuidance .quality li img{
+       max-width: 100%;
+       max-height: 100%;
+    }
+     .materials_clothes{
+      width: 100%;
+      padding-top:0.1rem ;
+      float: right;
+      /*overflow: hidden;*/
+         display: none;
+         margin-bottom: 20px;
+    }
+     .materials_clothes li{
+      width: 20%;
+      float: left;
+      margin-left: 22px;
+      text-align: center;
+    }
+     .materials_clothes li img{
+      width: 100%;
+      height: 99.09px;
+    }
+     .materials_trousers{
+      width: 100%;
+      padding-top:0.1rem ;
+      float: right;
+      /*overflow: hidden;*/
+      display: none;
+    }
+     .materials_trousers li{
+      width: 20%;
+      float: left;
+      margin-left: 22px;
+      text-align: center;
+    }
+     .materials_trousers li img{
+      width: 100%;
+      height: 99.09px;
+    }
+     .bottom_code{
+      clear: both;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+      color: red;
+      float: right;
+     }
+     .bottom_serial_number{
+         clear: both;
+         width: 100%;
+         text-align: center;
+         font-size: 25px;
+         color: red;
+         position: relative;
+     }
+     .bottom_serial_number #nc{
+         width: 100%;
+         overflow: hidden;
+         font-size: 14px;
+         color: #666;
+         margin-bottom: 20px;
+     }
+     .bottom_serial_number #nc li{
+         float: left;
+         margin-right: 0.35rem;
+     }
+    .layui-table, .layui-table-view {
+     margin:0px!important;
+    }
+    .layui-table td, .layui-table th {
+        /*position: relative;*/
+        /*padding: 9px 15px;*/
+        /*min-height: 20px;*/
+        line-height: 15px!important;
+        /*font-size: 14px;*/
+    }
+    .layui-col-md6 {
+        width: 100% !important;
+    }
+    .bottom_code_txt{
+        padding: 5px!important;
+    }
+    .layui-card-body {
+        line-height: 14px!important;
+        font-size: 14px;
+        text-align: left;
+    }
+    .layui-card:last-child {
+        width: 100%;
+        margin-bottom: 0;
+        /*height: 80px;*/
+        color: #333;
+    }
+    .bottom_code_txt {
+        width: 90% !important;
+        /*height: 2.2rem;*/
+        float: right;
+    }
+    .bottom_code_yb .layui-card{
+        /*height: 100px;*/
+    }
+    .bottom_code_yb{
+        width: 90%;
+        float: right;
+        padding: 5px!important;
+    }
+    #cm_detaile{
+     width: 95% !important;
+     float: right;
+    }
+   .cm_detaile_main tr{
+      width: 20%;
+      float: left;
+   }
+   .cm_detaile_main tr td{
+      width: 100%;
+   }
+   .right{
+       width: 50%;
+       height: 100%;
+       float: right;
+   }
+   .state_clothes{
+    display: block;
+    width: 2rem;
+    height: 1rem;
+    float: right;
+    text-align: center;
+    line-height: 1rem;
+    color: #000000;
+    position: absolute;
+    top: 30px;
+    left: 768px;
+   }
+   .state_trousers{
+    display: block;
+    width: 2rem;
+    height: 1rem;
+    float: right;
+    text-align: center;
+    line-height: 1rem;
+    color: #000000;
+    position: absolute;
+    top: -5px;
+    left: 768px;
+   }
+   table {
+    border-collapse: unset!important;
+    border-spacing: 0;
+}
+}

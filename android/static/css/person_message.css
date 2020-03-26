@@ -1,0 +1,46 @@
+
+/*QRONZ*/
+@media screen and (max-width: 1280px) {
+    .content{
+        width: 98%;
+        height:89.5%;
+        margin: 0 auto;
+        overflow: hidden;
+        z-index: 6666;
+        /*border: solid 1px black;*/
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+        padding-top: 0.1rem;
+    }
+    .content .content_main_left{
+        float: left;
+        width: 20%;
+    }
+    .content_main_right{
+        width: 79%;
+        height: 98%;
+        float: left;
+        /*border: solid 1px red;*/
+        margin: 10px 0;
+    }
+    .content .top_title{
+        width: 100%;
+        overflow: hidden;
+    }
+    .content .top_title .title{
+        float: left;
+        color: #666;
+    }
+    .content .top_title .back{
+        width: 4.6rem;
+        height: 2.8rem;
+        text-align: center;
+        line-height: 2.8rem;
+        border-radius: 5px;
+        border: solid 1px #e6e6e6;
+        float: right;
+        color: #666;
+        margin-top: 0.2rem;
+    }
+
+}

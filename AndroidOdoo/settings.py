@@ -25,7 +25,7 @@ SECRET_KEY = '%&gn@npgjpc^0f7z#_#gt_c5i977x+f@dna38&td3uhj8ncz#8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.32","192.168.1.118","0.0.0.0:8000","192.168.1.69","192.168.1.2"]
+ALLOWED_HOSTS = ["192.168.1.32","192.168.1.140","0.0.0.0:8000","127.0.0.1","192.168.1.69","192.168.1.2"]
 
 
 # Application definition
@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mes',
         'USER':'root',
-        'PASSWORD':'330304pan',
+        'PASSWORD':'erpstddata',
         'HOST':'localhost',
         'PORT':'3306'
     }
@@ -108,15 +108,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -126,4 +126,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
+
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'uploads')
 # TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)

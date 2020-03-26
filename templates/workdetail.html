@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="{% static 'css/workdetail.css' %}">
-
+        <link rel="stylesheet" href="{% static 'css/comment.css' %}">
+        <link rel="stylesheet" href="{% static 'css/popup.css' %}">
         <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
         <script src="{% static 'js/template.js' %}"></script>
 {#        <script src="{% static 'js/workdetail.js' %}"></script>#}
@@ -14,135 +15,237 @@
     </head>
 
     <body>
-        <div class="bag"></div>
-        <img src="" alt="">
+         <div class="bag">
+                <div class="popup">
+                    <div class="box">
+                        <div class="morph-shape">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 560 280" preserveAspectRatio="none">
+                                <rect x="3" y="3" fill="none" width="556" height="276"/>
+                            </svg>
+                            <div class="dialog-inner">
+                                <h2>The big guy is resting </h2>
+                                <div> Are you ok ？</div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+{#        <img src="" alt="">#}
+
+        <div class="herder">
+            <div class="herder_title">百先得智能工位</div>
             <ul class="top_btn">
                 <li id="changeTime" onclick="changeTime(this)">暂停</li>
                 <li>故障</li>
                 <li onclick="off_work()">下班</li>
             </ul>
             <ul class="today">
+                <li><img src="" alt=""></li>
                 <li>今日产量：<a id="today_total_qty"></a></li>
                 <li>效率：<a id="effectiveness"></a></li>
         {#      <li>工作时长：<a id="timer"></a></li>#}
                 <li>数量：<a id="num"></a></li>
             </ul>
-        <div class="herder">
-            百先得智能工位
         </div>
         <div class="content">
-             <h5>基本信息</h5>
-            <div class="basic_massage">
-                <ul>
-                    <li>姓名：<a>{{ name }}</a></li>
-                    <li>卡号：<a id="card_id">{{ card_id }}</a></li>
-                    <li>工序：<a>{{ department }}</a></li>
-                    <li>工位号：<a>{{ station }}</a></li>
-                    <li>技能等级：<a>{{ skill }}</a></li>
-                </ul>
-                <ul>
-                    <li>MO：<a id="mo"></a></li>
-                    <li>SO：<a id="so"></a></li>
-                    <li>二维码：<a id="code"></a></li>
-                    <li>流水号：<a id="serial_number"></a></li>
-                </ul>
-                <ul id="kablist"></ul>
-                <ul id="size_list_dic"></ul>
-                 <ul class="process">
-                    <li>工序名：<a id="work_stage">{{work_stage}}</a></li>
-                    <li>指导说明：<p id="stage_remarks"></p>
-                    </li>
-                    <li><img src="" alt=""></li>
-                </ul>
+{#             <h5 class="title">基本信息</h5>#}
+            <div class="content_main_left">
+                    <table class="basic_massage" border="1px" cellspacing="0" cellpadding="none" width="100%" >
+                    <thead>
+                        <tr>
+                            <td>姓名：</td>
+                            <td>{{ name }}</td>
+                        </tr>
+                        <tr>
+                            <td>卡号：</td>
+                            <td id="card_id">{{ card_id }}</td>
+                        </tr>
+                        <tr>
+                         <td>工序：</td>
+                         <td #work_stage>{{ department }}</td>
+                        <tr>
+                            <td>工位号：</td>
+                            <td id="station">{{ station }}</td>
+                        </tr>
+                        <tr>
+                            <td>技能等级：</td>
+                            <td>{{ skill }}</td>
+                        </tr>
+                        <tr>
+                            <td>MO：</td>
+                            <td id="mo"></td>
+                        </tr>
+                        <tr>
+                            <td>SO：</td>
+                            <td id="so"></td>
+                        </tr>
+                        <tr>
+                            <td>二维码：</td>
+                            <td id="code"></td>
+                        </tr>
+                        <tr>
+                            <td>流水号：</td>
+                            <td id="serial_number"></td>
+                        </tr>
+                        <tr>
+                            <td>客户款号：</td>
+                            <td id="customer_num"></td>
+                        </tr>
+                        <tr>
+                            <td>客户要求：</td>
+                            <td id="customer_req"></td>
+                        </tr>
+                        <tr class="process">
+                            <td>工序名：</td>
+                            <td id="work_stage">{{work_stage}}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <table id="kablist" border="1px" cellpadding="0" cellspacing="0" width="100%"></table>
+                    </tbody>
+                    <tfoot>
+                       <table id="size_list_dic" border="1px" cellpadding="0" cellspacing="0" width="100%"></table>
+                    </tfoot>
+                </table>
+                <script id="kablist_model" type="text/html">
+                {#    kuanshi#}
+                    <%if(kablist!=null){%>
+                       <%for(var list of kablist){%>
+                {#          <a>11111111111111</a>#}
+                {#          <a><%=list.BOM值%></a>#}
+                {#          <%for(var k in list){%>#}
+                            <tr>
+{#                                 <td><%=list%>款式项&nbsp:&nbsp</td>#}
+{#                                 <td><%=kablist[0].款式项%></td>#}
+                                   <td><%=kablist[0].款式项%></td>
+                                   <td><%=kablist[0].款式值%></td>
+                            </tr>
+                            <tr>
+{#                                 <td><%=list%>款式值&nbsp:&nbsp</td>#}
+{#                                 <td><%=kablist[0].款式值%></td>#}
+                                   <td><%=kablist[0].工艺项%></td>
+                                   <td><%=kablist[0].工艺值%></td>
+                            </tr>
+                            <tr>
+{#                                 <td> <%=list%>工艺项&nbsp:&nbsp</td>#}
+{#                                 <td><%=kablist[0].工艺项%></td>#}
+                                   <td> <%=kablist[0].BOM项%></td>
+                                   <td><%=kablist[0].BOM值%></td>
+                            </tr>
+{#                            <tr>#}
+{#                                 <td><%=list%>工艺值&nbsp:&nbsp</td>#}
+{#                                 <td><%=kablist[0].工艺值%></td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                 <td><%=list%>BOM项&nbsp:&nbsp</td>#}
+{#                                 <td> <%=kablist[0].BOM项%></td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                 <td><%=list%>BOM值&nbsp:&nbsp</td>#}
+{#                                 <td><%=kablist[0].BOM值%></td>#}
+{#                            </tr>#}
+                {#          <%}%>#}
+                        <%}%>
+                    <%}%>
+                {#    gongyi#}
+                {#    <%if(size_list_dic!=null){%>#}
+                {##}
+                {#       <%for(var size_list of size_list_dic){%>#}
+                {#          <%for(var k in size_list){%>#}
+                {#       <a>#}
+                {#        <%=k%>:<%=size_list[k]%>#}
+                {#        </a>#}
+                {#           <%}%>#}
+                {#        <%}%>#}
+                {#    <%}%>#}
+
+                </script>
+                 <script id="size_list_dic_model" type="text/html">
+                {#    kuanshi#}
+                    <%if(size_list_dic!=null){%>
+
+{#                       <%for(var list of size_list_dic){%>#}
+                {#          <a>11111111111111</a>#}
+                {#          <a><%=list.BOM值%></a>#}
+{#                          <%for(var k in list){%>#}
+{#                            <tr>#}
+{#                                <td><%=k%> &nbsp: &nbsp</td>#}
+{#                                <td><%=list['备注']%></td>#}
+{#                            </tr>#}
+{#                          <%}%>#}
+                            <tr>
+                                <td><%=size_list_dic[0]['版型']%></td>
+                                <td><%=size_list_dic[0]['备注']%></td>
+                            </tr>
+                            <tr>
+                                <td><%=size_list_dic[1]['版型']%></td>
+                                <td><%=size_list_dic[1]['备注']%></td>
+                            </tr>
+                            <tr>
+                                <td><%=size_list_dic[2]['版型']%></td>
+                                <td><%=size_list_dic[2]['备注']%></td>
+                            </tr>
+{#                        <%}%>#}
+                    <%}%>
+                {#    gongyi#}
+                {#    <%if(size_list_dic!=null){%>#}
+                {##}
+                {#       <%for(var size_list of size_list_dic){%>#}
+                {#          <%for(var k in size_list){%>#}
+                {#       <a>#}
+                {#        <%=k%>:<%=size_list[k]%>#}
+                {#        </a>#}
+                {#           <%}%>#}
+                {#        <%}%>#}
+                {#    <%}%>#}
+                </script>
             </div>
-<script id="kablist_model" type="text/html">
-{#    kuanshi#}
-    <%if(kablist!=null){%>
-
-       <%for(var list of kablist){%>
-{#          <a>11111111111111</a>#}
-{#          <a><%=list.BOM值%></a>#}
-{#       <%for(var k in list){%>#}
-            <li>
-            <%=list%>款式项&nbsp:&nbsp<%=kablist[0].款式项%>
-            </li>
-            <li>
-            <%=list%>款式值&nbsp:&nbsp<%=kablist[0].款式值%>
-            </li>
-            <li>
-            <%=list%>工艺项&nbsp:&nbsp<%=kablist[0].工艺项%>
-            </li>
-            <li>
-            <%=list%>工艺值&nbsp:&nbsp<%=kablist[0].工艺值%>
-            </li>
-            <li>
-            <%=list%>BOM项&nbsp:&nbsp<%=kablist[0].BOM项%>
-            </li>
-            <li>
-            <%=list%>BOM值&nbsp:&nbsp<%=kablist[0].BOM值%>
-            </li>
-{#           <%}%>#}
-        <%}%>
-    <%}%>
-{#    gongyi#}
-{#    <%if(size_list_dic!=null){%>#}
-{##}
-{#       <%for(var size_list of size_list_dic){%>#}
-{#          <%for(var k in size_list){%>#}
-{#       <a>#}
-{#        <%=k%>:<%=size_list[k]%>#}
-{#        </a>#}
-{#           <%}%>#}
-{#        <%}%>#}
-{#    <%}%>#}
-
-</script>
- <script id="size_list_dic_model" type="text/html">
-{#    kuanshi#}
-    <%if(size_list_dic!=null){%>
-
-       <%for(var list of size_list_dic){%>
-{#          <a>11111111111111</a>#}
-{#          <a><%=list.BOM值%></a>#}
-          <%for(var k in list){%>
-               <li>
-                <%=k%> &nbsp: &nbsp<%=list[k]%>
-                </li>
-           <%}%>
-        <%}%>
-    <%}%>
-{#    gongyi#}
-{#    <%if(size_list_dic!=null){%>#}
-{##}
-{#       <%for(var size_list of size_list_dic){%>#}
-{#          <%for(var k in size_list){%>#}
-{#       <a>#}
-{#        <%=k%>:<%=size_list[k]%>#}
-{#        </a>#}
-{#           <%}%>#}
-{#        <%}%>#}
-{#    <%}%>#}
-
-</script>
             <div class="processGuidance">
-                <H5>工艺指导</H5>
-                <div class="process_img"> <img id="stage_image" src="" alt=""></div>
-                <ul class="quality ">
-                    <li>质量（标准）</li>
-                    <li>质量标准说明：<p id="quality_remarks"></p>
-                    </li>
+                <ul class="process_img">
                     <li>
+                        <H5>工艺指导</H5>
+                        <img id="stage_image" src="" alt="">
+                    </li>
+                </ul>
+                <ul class="quality ">
+{#                    <li>质量标准说明：<p id="quality_remarks"></p>#}
+{#                    </li>#}
+                    <li>
+                        <H5>质量标准</H5>
                         <span class="left_img">
                             <img id="quality_image" src="" alt="">
                         </span>
                     </li>
                 </ul>
+                <div class="materials">
+                    <table border="1" width="100%" bgcolor="#e9faff" cellspacing="0">
+                         <tr align="center">
+                            <td>用料1</td>
+                            <td>用料名</td>
+                            <td>图片</td>
+                             <td>用料2</td>
+                            <td>用料名</td>
+                            <td>图片</td>
+                         </tr>
+                         <tr align="center">
+                            <td>用料3</td>
+                            <td>用料名</td>
+                            <td>图片</td>
+                             <td>用料4</td>
+                            <td>用料名</td>
+                            <td>图片</td>
+                         </tr>
+                    </table>
+                </div>
             </div>
-        </div>
+</div>
     </body>
     <script>
+        var process
+        var station
         window.onload = function(e){
-        var department = $('#work_stage').html()
+        process = $('#work_stage').html()
+        station = $('#station').html()
         var code = "";
         var lastTime,nextTime;
         var lastCode,nextCode;
@@ -152,7 +255,7 @@
                 window.s.close()
             }
             /*创建socket连接*/
-            var socket = new WebSocket("ws://192.168.1.32:8000/echo/");
+            var socket = new WebSocket("ws://192.168.1.140:8000/echo/");
             socket.onopen = function () {
                 console.log('WebSocket open');//成功连接上Websocket
             };
@@ -186,11 +289,16 @@
                     $('#code').text(code)
                     $.ajax({
                             type: "POST",
-                            url: "http://192.168.1.32:8000/workmessage/",
-                            data: {code:code, card_id:card_id.toString(),department:department,type:"workdetail"},
+                            url: "http://192.168.1.140:8000/workmessage/",
+                            data: {code:code, card_id:card_id.toString(),process:process,station:station,type:"workdetail"},
                             dataType: "json",
                             success: function(data){
+                                if (data=="null"){
+
+                                }
+                                else {
                                 var res = JSON.parse(data.data)
+                                console.log("res",res)
                                 $('#mo').text(res['Mo'])
                                 $('#stage_remarks').text(res['stage_remarks'])
                                 $('#quality_remarks').text(res['quality_remarks'])
@@ -199,6 +307,9 @@
                                 $('#today_total_qty').text(res['today_total_qty'])
                                 $('#num').text(res['num'])
                                 $('#serial_number').text(res['serial_number'])
+                                $('#customer_num').text(res['customer_code'])
+                                $('#customer_req').text(res['customer_claim'])
+
                                 var src_quality_image = 'data:image/jpeg;base64,'+res['quality_image']
                                 var src_stage_image = 'data:image/jpeg;base64,'+res['stage_image']
                                 $('#quality_image').attr("src",src_quality_image)
@@ -210,6 +321,7 @@
                                 var size_list_dic_html=template.render('size_list_dic_model',res);
                                 $("#kablist").html(kablist_html);
                                 $("#size_list_dic").html(size_list_dic_html);
+                                }
                             }
                         });
                     code = "";
@@ -228,8 +340,8 @@
         var card_id = $('#card_id').html()
         $.ajax({
                 type: "POST",
-                url: "http://192.168.1.32:8000/offwork/",
-                data: {card_id: card_id.toString()},
+                url: "http://192.168.1.140:8000/offwork/",
+                data: {card_id: card_id.toString(),process:process,station:station},
                 dataType: "json",
                 success: function (data) {
 {#                    $('#changeTime').text("恢复")#}
@@ -249,8 +361,8 @@ var that=this;
             console.log("~~~~~~")
             $.ajax({
                 type: "POST",
-                url: "http://192.168.1.32:8000/stopTime/",
-                data: {card_id: card_id.toString()},
+                url: "http://192.168.1.140:8000/stopTime/",
+                data: {card_id: card_id.toString(),process:process,station:station},
                 dataType: "json",
                 success: function (data) {
                     $('#changeTime').text("恢复")
@@ -267,8 +379,8 @@ var that=this;
             console.log("~~~~~~")
             $.ajax({
                 type: "POST",
-                url: "http://192.168.1.32:8000/recoverTime/",
-                data: {card_id: card_id.toString()},
+                url: "http://192.168.1.140:8000/recoverTime/",
+                data: {card_id: card_id.toString(),process:process,station:station},
                 dataType: "json",
                 success: function (data) {
                     $('#changeTime').text("暂停");
